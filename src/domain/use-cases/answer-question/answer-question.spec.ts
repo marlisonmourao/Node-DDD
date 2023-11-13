@@ -1,6 +1,5 @@
 import { Answer } from '@/domain/entities/answer'
 import { AnswerRepository } from '@/repositories/answer-repository'
-import { describe, expect, test } from 'vitest'
 import { AnswerQuestionUseCase } from './answer-question'
 
 const fakeAnswerRepository: AnswerRepository = {
