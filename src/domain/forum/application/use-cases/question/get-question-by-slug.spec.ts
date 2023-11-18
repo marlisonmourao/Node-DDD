@@ -1,5 +1,5 @@
 import { Slug } from '@/domain/forum/enterprise/entities/value-objects/slug/slug'
-import { makeQuestion } from 'factores/make-question'
+import { makeQuestion } from 'test/factories/make-question'
 import { InMemoryQuestionsRepository } from 'test/repositories/in-memory-question-repository'
 import { GetQuestionBySlugUseCase } from './get-question-by-slug'
 
@@ -22,8 +22,6 @@ describe('Get Question By Slug Use Case', () => {
     const { question } = await sut.execute({
       slug: 'example-question',
     })
-
-    console.log(question)
 
     expect(question.id).toBeTruthy()
     expect(inMemoryQuestionsRepository.items[0].id).toEqual(question.id)
