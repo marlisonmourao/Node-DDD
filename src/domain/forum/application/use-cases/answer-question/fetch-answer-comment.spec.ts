@@ -25,26 +25,26 @@ describe('Fetch Answer Comment Use Case', () => {
       makeAnswerComment({ answerId: new UniqueEntityId('answer-1') }),
     )
 
-    const { answersComments } = await sut.execute({
+    const result = await sut.execute({
       page: 1,
       answerId: 'answer-1',
     })
 
-    expect(answersComments).toHaveLength(3)
+    expect(result.value?.answersComments).toHaveLength(3)
   })
 
-  it('should be able to fetch answers comment', async () => {
+  it('should be able to fetch paginated answers comment', async () => {
     for (let i = 1; i <= 22; i++) {
       await inMemoryAnswerCommentRepository.create(
         makeAnswerComment({ answerId: new UniqueEntityId('answer-1') }),
       )
     }
 
-    const { answersComments } = await sut.execute({
+    const result = await sut.execute({
       answerId: 'answer-1',
       page: 2,
     })
 
-    expect(answersComments).toHaveLength(2)
+    expect(result.value?.answersComments).toHaveLength(2)
   })
 })
