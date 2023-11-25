@@ -1,15 +1,23 @@
 import { UniqueEntityId } from '@/domain/forum/enterprise/entities/value-objects/unique-entity-id/unique-entity-id'
 import { makeAnswer } from 'test/factories/make-answer'
+import { makeAnswerAttachment } from 'test/factories/make-answer-attachments'
+import { InMemoryAnswerAttachmentRepository } from 'test/repositories/in-memory-answer-attachemnts-repository'
 import { InMemoryAnswerRepository } from 'test/repositories/in-memory-answers-repository'
 import { NotAllowedError } from '../errors/not-allowed-error'
 import { DeleteAnswerUseCase } from './delete-answer'
 
+let inMemoryAnswerAttachemntsRepository: InMemoryAnswerAttachmentRepository
 let inMemoryAnswerRepository: InMemoryAnswerRepository
 let sut: DeleteAnswerUseCase
 
 describe('Delete Answer Use Case', () => {
   beforeEach(() => {
-    inMemoryAnswerRepository = new InMemoryAnswerRepository()
+    inMemoryAnswerAttachemntsRepository =
+      new InMemoryAnswerAttachmentRepository()
+
+    inMemoryAnswerRepository = new InMemoryAnswerRepository(
+      inMemoryAnswerAttachemntsRepository,
+    )
     sut = new DeleteAnswerUseCase(inMemoryAnswerRepository)
   })
 
@@ -23,12 +31,24 @@ describe('Delete Answer Use Case', () => {
 
     inMemoryAnswerRepository.create(newAnswer)
 
+    inMemoryAnswerAttachemntsRepository.items.push(
+      makeAnswerAttachment({
+        answerId: newAnswer.id,
+        attachmentId: new UniqueEntityId('1'),
+      }),
+      makeAnswerAttachment({
+        answerId: newAnswer.id,
+        attachmentId: new UniqueEntityId('2'),
+      }),
+    )
+
     await sut.execute({
       answerId: 'answer-1',
       authorId: 'author-1',
     })
 
     expect(inMemoryAnswerRepository.items).toHaveLength(0)
+    expect(inMemoryAnswerAttachemntsRepository.items).toHaveLength(0)
   })
 
   it('should not be able to delete a answer from another user', async () => {
