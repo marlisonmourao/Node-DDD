@@ -1,7 +1,7 @@
+import { NotAllowedError } from '@/core/errors/errors/not-allowed-error'
 import { UniqueEntityId } from '@/domain/forum/enterprise/entities/value-objects/unique-entity-id/unique-entity-id'
 import { makeQuestionComment } from 'test/factories/make-question-comment'
 import { InMemoryQuestionCommentRepository } from 'test/repositories/in-memory-question-comment-repository'
-import { NotAllowedError } from '../errors/not-allowed-error'
 import { DeleteQuestionCommentUseCase } from './delete-question-comment'
 
 let inMemoryQuestionCommentRepository: InMemoryQuestionCommentRepository

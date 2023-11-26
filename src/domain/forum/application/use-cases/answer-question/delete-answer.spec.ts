@@ -1,9 +1,9 @@
+import { NotAllowedError } from '@/core/errors/errors/not-allowed-error'
 import { UniqueEntityId } from '@/domain/forum/enterprise/entities/value-objects/unique-entity-id/unique-entity-id'
 import { makeAnswer } from 'test/factories/make-answer'
 import { makeAnswerAttachment } from 'test/factories/make-answer-attachments'
 import { InMemoryAnswerAttachmentRepository } from 'test/repositories/in-memory-answer-attachemnts-repository'
 import { InMemoryAnswerRepository } from 'test/repositories/in-memory-answers-repository'
-import { NotAllowedError } from '../errors/not-allowed-error'
 import { DeleteAnswerUseCase } from './delete-answer'
 
 let inMemoryAnswerAttachemntsRepository: InMemoryAnswerAttachmentRepository
