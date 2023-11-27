@@ -3,7 +3,7 @@ import { faker } from '@faker-js/faker'
 import {
   AnswerComment,
   AnswerCommentProps,
-} from '@/domain/forum/enterprise/answer-comment'
+} from '@/domain/forum/enterprise/entities/answer-comment'
 import { UniqueEntityId } from '@/domain/forum/enterprise/entities/value-objects/unique-entity-id/unique-entity-id'
 
 export function makeAnswerComment(
