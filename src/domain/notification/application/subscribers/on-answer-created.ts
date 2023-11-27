@@ -1,4 +1,5 @@
 import { QuestionsRepository } from '@/domain/forum/application/repositories/question-repository'
+
 import { AnswerCreatedEvent } from '@/domain/forum/enterprise/entities/events/answer-created-event'
 import { DomainEvents } from '@/events/domain-events'
 import { EventHandler } from '@/events/event-handler'

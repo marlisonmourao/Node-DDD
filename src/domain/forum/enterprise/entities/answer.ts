@@ -1,7 +1,7 @@
 import { AggregateRoot } from '@/core/entities/aggregate-root'
 import { Optional } from '@/core/types/optional'
-import { AnswerCreatedEvent } from '../events/answer-created-event'
 import { AnswerAttachmentList } from './answer-attachemnt-list'
+import { AnswerCreatedEvent } from './events/answer-created-event'
 import { UniqueEntityId } from './value-objects/unique-entity-id/unique-entity-id'
 
 export interface AnswerProps {
